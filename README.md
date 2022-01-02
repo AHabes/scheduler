@@ -3,12 +3,16 @@ Web app for booking interview appointments.
 
 ## Final Product
 
+### Scheduler app
 ![Screenshot 1](docs/scheduler%20app.png)
 
+### appointments
 ![Screenshot 2](docs/appointments.png)
 
+### new appointment
 ![Screenshot 3](docs/new%20appointment.png)
 
+### delete appointment
 ![Screenshot 4](docs/delete%20appointment.png)
 
 
