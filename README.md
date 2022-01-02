@@ -1,5 +1,5 @@
 # Interview Scheduler
-
+Web app for booking interview appointments.
 ## Setup
 
 Install dependencies with `npm install`.
