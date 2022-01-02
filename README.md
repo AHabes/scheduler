@@ -1,5 +1,13 @@
 # Interview Scheduler
 Web app for booking interview appointments.
+
+## Final Product
+
+![Screenshot 1](docs/appointments.png)
+
+![Screenshot 2](screenshots/screenshot-2.png)
+
+
 ## Setup
 
 Install dependencies with `npm install`.
