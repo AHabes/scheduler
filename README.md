@@ -18,7 +18,11 @@ Web app for booking interview appointments.
 
 ## Setup
 
-Install dependencies with `npm install`.
+- Install dependencies with `npm install`.
+- Run `npm start` to run the webpack development server.
+- Visit `http://localhost:8000` in the browser.
+
+The project has been tested with Node v12.22.7
 
 ## Running Webpack Development Server
 
@@ -37,3 +41,12 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+- React
+- Axios
+- Postgres
+- Classnames
+- Storybook
+- Cypress
+- Webpack
