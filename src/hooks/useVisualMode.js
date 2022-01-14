@@ -9,8 +9,9 @@ export function useVisualMode(initial) {
     transition: (newMode, replace = false) => {
       if (replace) {
         setMode(newMode);
-        history[history.length - 1] = newMode;
-        setHistory(history);
+        const updatedState = history.slice(); //copy the state array.
+        updatedState[updatedState.length - 1] = newMode;
+        setHistory(updatedState);
       } else {
         setMode(newMode);
         setHistory([...history, newMode])
@@ -18,9 +19,11 @@ export function useVisualMode(initial) {
     },
     back: () => {
       if (history.length > 1) {
-        history.splice(-1);
-        setHistory(history);
-        setMode(history[history.length - 1]);
+        const updatedState = history.slice(); // copy the state array.
+        updatedState.splice(-1); // remove the latest mode from history.
+
+        setHistory(updatedState);
+        setMode(updatedState[updatedState.length - 1]); // set the mode to the latest mode in history.
       }
     }
   }
