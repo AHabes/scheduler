@@ -28,10 +28,9 @@ export default function Appointment(props) {
     };
 
     transition(SAVING);
-    const res = props.bookInterview(props.id, interview);
-    res.then(() => {
-      transition(SHOW);
-    }).catch(err => {
+    props.bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(err => {
       transition(ERROR_SAVE, true);
       console.log("Error saving the appointment: ", err);
     })
@@ -41,12 +40,11 @@ export default function Appointment(props) {
     transition(CONFIRM);
   }
 
-  function delete_() {
+  function destroy() {
     transition(DELETING, true);
-    const res = props.cancelInterview(props.id);
-    res.then(() => {
-      transition(EMPTY);
-    }).catch(err => {
+    props.cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch(err => {
       transition(ERROR_DELETE, true);
       console.log("Error deleting the appointment: ", err);
     })
@@ -93,11 +91,11 @@ export default function Appointment(props) {
       />}
       {mode === CONFIRM && <Confirm
         onCancel={back}
-        onConfirm={delete_}
+        onConfirm={destroy}
       />}
       {mode === ERROR_SAVE && <Error
         message={"Error saving the appointment"}
-        onClose={() => transition(SHOW)}
+        onClose={back}
       />}
       {mode === ERROR_DELETE && <Error
         message={"Error canceling the appointment"}
