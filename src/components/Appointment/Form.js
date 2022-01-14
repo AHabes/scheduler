@@ -12,11 +12,13 @@ export default function Form(props) {
     setInterviewer("");
   };
 
+  // reset the student and interviewer states on cancel.
   const cancel = () => {
     reset();
     props.onCancel();
   };
 
+  // validate the form before saving, a student and an interviewer must be selected.
   function validate() {
     if (!student) {
       setError("Student name cannot be blank");
