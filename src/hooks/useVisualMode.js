@@ -6,24 +6,21 @@ export function useVisualMode(initial) {
 
   return {
     mode,
-    transition: (newMode, replace = false) => {
-      if (replace) {
+    transition: function (newMode, replace = false) {
+      if (!replace) {
         setMode(newMode);
-        const updatedState = history.slice(); //copy the state array.
-        updatedState[updatedState.length - 1] = newMode;
-        setHistory(updatedState);
-      } else {
-        setMode(newMode);
-        setHistory([...history, newMode])
+        const updatedHistory = [...history];  // copy the state array.
+        updatedHistory.push(newMode); // push the latest mode to history.
+        setHistory(updatedHistory);
       }
+      setMode(newMode);
     },
     back: () => {
       if (history.length > 1) {
-        const updatedState = history.slice(); // copy the state array.
-        updatedState.splice(-1); // remove the latest mode from history.
-
-        setHistory(updatedState);
-        setMode(updatedState[updatedState.length - 1]); // set the mode to the latest mode in history.
+        const updatedHistory = [...history]; // copy the state array.
+        updatedHistory.pop(); // remove the latest mode from history.
+        setHistory(updatedHistory);
+        setMode(updatedHistory[updatedHistory.length - 1]);
       }
     }
   }

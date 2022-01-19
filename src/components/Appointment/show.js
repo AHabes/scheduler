@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Show(props) {
+export default function
+  Show(props) {
 
   return (
     <main className="appointment__card appointment__card--show">
@@ -23,7 +24,7 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick={props.onDelete}
+            onClick={props.onCancel}
           />
         </section>
       </section>

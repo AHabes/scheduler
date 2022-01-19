@@ -32,25 +32,25 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then(() => transition(SHOW))
       .catch(err => {
-      transition(ERROR_SAVE, true); // replace the SAVING mode in the history.
-      console.log("Error saving the appointment: ", err);
-    })
-  }
-
-  function confirmDelete() {
-    transition(CONFIRM);
+        transition(ERROR_SAVE, true); // replace the SAVING mode in the history.
+        console.log("Error saving the appointment: ", err);
+      })
   }
 
   // delete the appointment.
-  function destroy() {
-    transition(DELETING, true);
-    props.cancelInterview(props.id)
-      .then(() => transition(EMPTY))
-      .catch(err => {
-      transition(ERROR_DELETE, true); // replace the DELETING mode in the history.
-      console.log("Error deleting the appointment: ", err);
-    })
-  }
+  const destroy = () => {
+    if (mode === CONFIRM) {
+      transition(DELETING, true);
+      props.cancelInterview(props.id)
+        .then(() => transition(EMPTY))
+        .catch(err => {
+          transition(ERROR_DELETE, true); // replace the DELETING mode in the history.
+          console.log("Error deleting the appointment: ", err);
+        });
+    } else {
+      transition(CONFIRM);
+    }
+  };
 
   function edit() {
     transition(EDIT);
@@ -66,9 +66,8 @@ export default function Appointment(props) {
       {mode === SHOW && <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
-        onSave={save}
         onEdit={edit}
-        onDelete={confirmDelete}
+        onCancel={destroy}
       />}
       {mode === CREATE && <Form
         interviewers={props.interviewers}
